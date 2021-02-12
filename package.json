@@ -1,0 +1,22 @@
+{
+  "name": "api-weed-stats",
+  "version": "1.0.0",
+  "description": "Api para traer info del cultivo",
+  "main": "Index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "author": "El mairo y el pela",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mariadb": "^2.5.2",
+    "mysql2": "^2.2.5",
+    "nodemon": "^2.0.7",
+    "sequelize": "^6.5.0",
+    "sqlite3": "^5.0.1"
+  }
+}
