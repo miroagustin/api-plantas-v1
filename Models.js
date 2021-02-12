@@ -1,5 +1,6 @@
 const { Sequelize, Model, DataTypes } = require('sequelize');
-const config = require("./config.json")
+if (process.env.JAWSDB_MARIA_URL)
+  const config = require("./config.json")
 const sequelize = process.env.JAWSDB_MARIA_URL ? new Sequelize(process.env.JAWSDB_MARIA_URL)
   : new Sequelize(config.connString);
 
