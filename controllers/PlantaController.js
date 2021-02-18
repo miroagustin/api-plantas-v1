@@ -1,4 +1,4 @@
-const { Planta, MedioCultivo, Genetica, Riego } = require('./Models.js')
+const { Planta, MedioCultivo, Genetica, Riego } = require('../Models.js')
 
 const plantaController = {
     obtenerPlantas: () => {
@@ -29,10 +29,13 @@ const plantaController = {
             })
     },
     modificarPlanta: (id, bodyRequest) => {
-            return Planta.update(
-                bodyRequest,
-                { where: { id: id } }
-            )
+        return Planta.update(
+            bodyRequest,
+            { where: { id: id } }
+        )
+    },
+    borrarPlanta: (id) => {
+        return Planta.destroy({ where: { id: id } });
     }
 }
 module.exports = plantaController

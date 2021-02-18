@@ -1,7 +1,8 @@
 const { Sequelize, Model, DataTypes } = require('sequelize');
 if (!process.env.JAWSDB_MARIA_URL)
   var config = require("./config.json")
-const sequelize = process.env.JAWSDB_MARIA_URL ? new Sequelize(process.env.JAWSDB_MARIA_URL)
+const sequelize = process.env.JAWSDB_MARIA_URL ?
+  new Sequelize(process.env.JAWSDB_MARIA_URL)
   : new Sequelize(config.connString);
 
 class MedioCultivo extends Model { }
@@ -29,7 +30,7 @@ Planta.init({
   nombre: DataTypes.STRING,
   etapa: DataTypes.STRING,
   fechaNacimiento: DataTypes.DATE,
-  origen: DataTypes.STRING,
+  origen: DataTypes.STRING
 }, { sequelize, modelName: 'planta', paranoid: true })
 
 Planta.MedioCultivo = Planta.belongsTo(MedioCultivo, { foreignKey: { allowNull: false } })
@@ -41,7 +42,7 @@ Riego.Planta = Riego.belongsTo(Planta, { foreignKey: { allowNull: false } })
 
 sequelize.sync()
   .then(() => {
-    console.log(`Database & tables sync!`)
+    console.log(`Database & tables sync!`);
   })
 module.exports = {
   Planta,

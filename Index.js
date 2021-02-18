@@ -1,8 +1,10 @@
 const express = require('express')
 var cors = require('cors');
 var bodyParser = require('body-parser')
-const plantaController = require('./PlantaController')
-const riegoController = require('./RiegoController')
+const plantaController = require('./controllers/PlantaController')
+const riegoController = require('./controllers/RiegoController')
+const medioCultivoController = require('./controllers/MedioCultivoController')
+const geneticaController = require('./controllers/GeneticaController')
 const app = express()
 const port = 3000
 app.use(cors());
@@ -17,7 +19,6 @@ app.route('/plantas')
     })
     .post((req, res) => {
         var obj = req.body;
-        console.log(obj)
         plantaController.crearPlanta(obj)
             .then(planta => res.send(planta))
             .catch(error => res.send(error))
@@ -36,6 +37,12 @@ app.route('/plantas/:id')
         plantaController.modificarPlanta(id, req.body)
             .then(rows => res.send(rows > 0 ? "OK" : "NO CAMBIO"))
             .catch(err => res.send(err))
+    })
+    .delete((req, res) => {
+        var id = req.params.id;
+        plantaController.borrarPlanta(id)
+            .then(rows => res.send(rows > 0 ? "OK" : "NO CAMBIO"))
+            .catch(error => res.send(error))
     })
 
 // Obtener Riegos de una planta y crear un riego relacionado a una planta
@@ -71,6 +78,18 @@ app.route('/:plantumId/riegos/:id')
             .catch(err => res.send(err))
     })
 
+app.route('/medios-cultivo')
+    .get((req, res) => {
+        medioCultivoController.obtenerMediosCultivo()
+        .then(mediosCultivo => res.send(mediosCultivo))
+        .catch(err => res.send(err))
+    })
+app.route('/geneticas')
+    .get((req, res) => {
+        geneticaController.obtenerGeneticas()
+            .then(geneticas => res.send(geneticas))
+            .catch(err => res.send(err))
+    })
 app.listen(process.env.PORT || port, () => {
-    console.log(`Weed Stats Api Running !!`)
+    console.log(`Weed Stats Api Running !!`);
 })

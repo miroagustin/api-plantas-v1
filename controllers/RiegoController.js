@@ -1,4 +1,4 @@
-const { Riego } = require('./Models.js')
+const { Riego } = require('../Models.js')
 const riegoController = {
     obtenerRiegos: (plantumId) => {
         return Riego.findAll({
