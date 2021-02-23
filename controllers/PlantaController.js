@@ -18,7 +18,10 @@ const plantaController = {
                     { model: MedioCultivo, attributes: ['tipo', 'medidas'] },
                     { model: Genetica, attributes: ['nombre', 'tipo', 'variedad'] },
                     { model: Riego, attributes: ['fecha', 'cantRiego', 'nutriente'] }],
-                attributes: ['id', 'nombre', 'etapa', 'fechaNacimiento', 'origen']
+                attributes: ['id', 'nombre', 'etapa', 'fechaNacimiento', 'origen'],
+                order: [
+                    [Riego, 'fecha', 'desc']
+                  ]
             })
     },
     crearPlanta: (bodyRequest) => {
